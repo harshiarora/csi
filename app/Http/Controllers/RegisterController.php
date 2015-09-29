@@ -92,17 +92,16 @@ class RegisterController extends Controller
         $user = null;
 
         if ( ( $entity == 'institution-academic') ) {
-            $user = $this->storeAcademicInstitution($user);               
+            $user = $this->storeAcademicInstitution();               
         } else if ( ( $entity == 'institution-non-academic') ) {
-            $user = $this->storeNonAcademicInstitution($user);               
+            $user = $this->storeNonAcademicInstitution();               
         } else if ( ( $entity == 'individual-student') ) {
-            $user = $this->storeStudentIndividual($user);               
+            $user = $this->storeStudentIndividual();               
         } else if ( ( $entity == 'individual-professional') ) {
-            $user = $this->storeProfessionalIndividual($user);               
+            $user = $this->storeProfessionalIndividual();               
         }
 
         if ($user){
-            
             
             $name = $user->subType->getName();
             $aid = $user->subType->membershipType->prefix."-".$user->id;
@@ -370,8 +369,8 @@ class RegisterController extends Controller
 
     }
 
-    private function storeNonAcademicInstitution($user) {
-        DB::transaction(function($connection) use($user){
+    private function storeNonAcademicInstitution() {
+        $var = DB::transaction(function($connection) {
                
             $membership_period = Input::get('membership-period');
             $nameOfInstitution = Input::get('nameOfInstitution');
@@ -482,11 +481,15 @@ class RegisterController extends Controller
                     if( !is_null($member->id) && $member->id > 0 ) {
                         $user = $member;
                     }
+
+                    return $member;
             });
+
+        return $var;
     }
 
-    private function storeProfessionalIndividual($user){
-        DB::transaction(function($connection) use($user){
+    private function storeProfessionalIndividual(){
+        $var = DB::transaction(function($connection) {
 
             $membership_period = Input::get('membership-period');
             $salutation = Input::get('salutation');
@@ -605,12 +608,15 @@ class RegisterController extends Controller
                     if( !is_null($member->id) && $member->id > 0 ) {
                         $user = $member;
                     }
+
+                    return $member;
             });
+        return $var;
     }
 
 
-    private function storeStudentIndividual($user){
-        DB::transaction( function($connection) use($user) {
+    private function storeStudentIndividual(){
+        $var = DB::transaction( function($connection) {
 
             $membership_period = Input::get('membership-period');
             $salutation = Input::get('salutation');
@@ -737,9 +743,11 @@ class RegisterController extends Controller
                     if( !is_null($member->id) && (($member->id) > 0) ) {
                         $user = $member;
                     }
-                    echo "here";
-                    dd($user);
+                    
+                    return $member;
             });
+
+            return $var;
     }
 
 }

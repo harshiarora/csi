@@ -23,6 +23,9 @@
         span.title .glyphicon{
             margin-right: 7px;
         }
+        .panel, .btn{
+          border-radius: 0px;
+        }
 
     </style>
 
@@ -320,16 +323,16 @@
                                     </div>
                                     <div class="panel-footer">
                                         <div class="row">
-                                            <div class="col-md-2">
+                                            <div class="col-md-4">
                                                 <a class="btn btn-primary" href={{ route('backendIndividualAcceptById', ['typeId'=>$typeId, 'id' => $id, 'pid' => $n->id]) }}>Accept</a>
+                                                <a class="btn btn-primary" target="_blank" href={{ url('admin/proofs', ['filename'=> $n->proof]) }}>View Payment Proof</a>
 
                                                 <a class="btn btn-primary" href={{ route('backendIndividualRejectById', ['typeId'=>$typeId, 'id' => $id, 'pid' => $n->id]) }}>Reject</a>
                                             </div>
-                                            <div class="col-md-10">
+                                            <div class="col-md-8">
                                                 @if ( $n->is_rejected == -1 )
                                                     <p>new payment, waiting to be approved/rejected</p>
                                                 @endif
-
                                                 @if ( $n->is_rejected == 0)
                                                     <p>This payment has been accepted</p>
                                                 @else

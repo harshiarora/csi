@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\CsiRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Institution;
@@ -53,19 +54,44 @@ class InstitutionController extends Controller
 
         $this->dispatch(new SendVerificationSms($aid, $email, $user->subType->mobile));
             
-        Mail::queue('frontend.emails.individual_verify', ['membership_type' => $membership_type, 'period' => $period, 'password'=>$password, 'name' => $user->subType->getName(), 'email' => $email, 'aid' => $aid], function($message) use($user){
+        Mail::queue('frontend.emails.institution_verify', ['membership_type' => $membership_type, 'period' => $period, 'password'=>$password, 'name' => $user->subType->getName(), 'email' => $email, 'aid' => $aid], function($message) use($user){
                     $message->to($user->email)->subject('CSI-Membership verified'); 
         });
 
 
-        Flash::success('Success! verified the Institution, now they can use there services');
+        Flash::success('Success! verified the Institution, now they can use their services');
         
         return redirect()->route('backendInstitution', [$typeId]);
     }
 
+    public function listStudentBranch() {
+        $counter = 0;
+        // academic
+            // $institutions = Member::getAllInstitions()->get()->getAllAcademicInstitutions()->get();
+        $typeName = 'Academic Institutions';
+        $academics = CsiRequest::studentBranch()->isPending()->get();
+        return view('backend.institutions.list_student_branch', compact('typeId', 'academics', 'counter', 'typeName'));
+    }
+
+    public function makeStudentBranch($rid) {
+        $req = CsiRequest::find($rid);
+        $academic = $req->requestedBy->subType->subType;
+
+        $academic->is_student_branch = 1;
+        $academic->save();
+
+        $req->status_code = 1;
+        $req->save();
+
+        Flash::success('Success! insitution has been made a student branch');
+        
+        return redirect()->route('backendInstitutionListStudentBranch');
+
+    }
+
     public function profile($typeId, $id) {   
 
-        $user = Individual::find($id);
+        $user = Institution::find($id);
         return view('backend.institutions.profile', compact('user', 'typeId', 'id') );
     }
 

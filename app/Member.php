@@ -75,4 +75,8 @@ class Member extends Model implements AuthenticatableContract,
         return $this->hasMany('App\Payment', 'paid_for', 'id');
     }
 
+    public function requests() {
+        return $this->hasMany('App\Request', 'requested_by', 'id');
+    }
+
 }

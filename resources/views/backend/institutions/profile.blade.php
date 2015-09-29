@@ -70,13 +70,27 @@
                                             <span class="title"><span class="glyphicon glyphicon-tag"></span>Institution Category</span><br/>
                                             <span class="title-text">
                                               @if ($typeId == 1)
-                                                {{ $user->membershipType->type }}  - {{ $user->subType->InstitutionType->type  }}
+                                                {{ $user->membershipType->type }}  - {{ $user->subType->InstitutionType->name  }}
                                               @else 
                                                 {{ $user->membershipType->type }}
                                                 {{-- expr --}}
                                               @endif
                                             </span>
                                          </li>
+
+                                        @if ($user->membershipType->type == 'academic')
+                                         <li>
+                                            <span class="title"><span class="glyphicon glyphicon-tag"></span>Is a Student Branch</span><br/>
+                                            @if ($user->subType->is_student_branch == 1)
+                                            <span class="title-text">
+                                                yes
+                                              @else 
+                                                No
+                                                {{-- expr --}}
+                                            </span>
+                                            @endif
+                                         </li>
+                                          @endif
 
                                          <li>
                                             <span class="title"><span class="glyphicon glyphicon-tag"></span>Email (Login ID)</span><br/>
@@ -275,12 +289,12 @@
                                     </div>
                                     <div class="panel-footer">
                                         <div class="row">
-                                            <div class="col-md-2">
+                                            <div class="col-md-4">
                                                 <a class="btn btn-primary" href={{ route('backendInstitutionAcceptById', ['typeId'=>$typeId, 'id' => $id, 'pid' => $n->id]) }}>Accept</a>
-
+                                                <a class="btn btn-primary" target="_blank" href={{ url('admin/proofs', ['filename'=> $n->proof]) }}>View Payment Proof</a>
                                                 <a class="btn btn-primary" href={{ route('backendInstitutionRejectById', ['typeId'=>$typeId, 'id' => $id, 'pid' => $n->id]) }}>Reject</a>
                                             </div>
-                                            <div class="col-md-10">
+                                            <div class="col-md-8">
                                                 @if ( $n->rejection )
                                                     <p>Reason: {{ $n->rejection->reason }}</p>
                                                 @endif

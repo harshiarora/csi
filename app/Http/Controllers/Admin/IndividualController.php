@@ -40,8 +40,8 @@ class IndividualController extends Controller
     public function verify($typeId, $id) {   
 
         $inst = Individual::find($id);
-        $$inst->member->is_verified = 1;
-        $$inst->member->save();
+        $inst->member->is_verified = 1;
+        $inst->member->save();
 
         $user = $inst->member;
         $aid = $user->subType->membershipType->prefix."-".$user->id;
@@ -56,7 +56,7 @@ class IndividualController extends Controller
                     $message->to($user->email)->subject('CSI-Membership verified'); 
         });
         
-        Flash::success('Success! verified the Member, now they can use there services');
+        Flash::success('Success! verified the Member, now they can use their services');
         
         return redirect()->route('backendIndividual', [$typeId]);
     }
@@ -65,6 +65,12 @@ class IndividualController extends Controller
 
         $user = Individual::find($id);
         return view('backend.individuals.profile', compact('user', 'typeId', 'id') );
+    }
+
+    public function view_proof($typeId, $id, $nid){
+        $narration = Narration::find($nid);
+        $proof = storage_path('uploads/payment_proofs/'.$narration->proof);
+        return view('backend.individuals.proof', compact('proof'));
     }
 
     public function reject_payment($typeId, $id, $narration_id) {   

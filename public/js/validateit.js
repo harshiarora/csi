@@ -1059,11 +1059,11 @@
           message: "Use digits only"
         },
         alphaNumeric: {
-          regex: /^[-,\\0-9A-Za-z ]+$/,
+          regex: /^[-,.\\0-9A-Za-z ]+$/,
           message: "Use digits and letters only"
         },
         alphaDash: {
-          regex: /^[0-9A-Za-z- ]+$/,
+          regex: /^[-,.\\0-9A-Za-z- ]+$/,
           message: "Use digits and letters only"
         }
     });

@@ -11,6 +11,10 @@ body{
 	padding-top: 210px !important;
 }
 
+#csi-logo{
+	padding: 5px 0px;
+}
+
 #navbar{
 	-webkit-transition: all 0.2s ease-in;
     -mos-transition: all 0.2s ease-in;

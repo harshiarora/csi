@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\CsiRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use Illuminate\Http\Request;
 use Auth;
+use Flash;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class UserDashboardController extends Controller
 {
@@ -29,6 +32,31 @@ class UserDashboardController extends Controller
         $user = Auth::user()->user();
 
         return view('frontend.dashboard.profile', compact('user'));
+    }
+
+    public function confirmStudentBranch() {
+        return view('frontend.dashboard.confirmStudentBranch');
+    }
+
+    public function makeStudentBranch() {
+        
+        if(Auth::user()->user()->subType->subType->is_student_branch != 1) {
+            $user = Auth::user()->user();
+            
+            $academic = $user->subType->subType;
+            $academic->is_student_branch = 0;
+            $academic->save();
+
+            CsiRequest::create([
+                'requested_by' => $user->id,
+                'request_type' => 2,
+            ]);
+            Flash::success('Your request Has been Sent successfully');
+        } else {
+            Flash::success('You are already a student branch');
+        }
+        
+        return Redirect::to('/dashboard');
     }
 
     /**

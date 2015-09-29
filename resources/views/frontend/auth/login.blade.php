@@ -4,11 +4,10 @@
 	<section id="main">
    		<div class="container">
    			<div class="row">
-   				<div class="col-md-12">
+   				<div class="col-md-offset-4 col-md-4">
    					<div>
 					  <h1 class="section-header-style">Login</h1>
 					</div>
-
 
 					@if ( $errors->any() )
    						<ul class="no-style">

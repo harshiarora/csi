@@ -7,7 +7,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">CSI Admin</a>
+                <a class="navbar-brand" href={{ route('adminDashboard') }}>CSI Admin</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -46,7 +46,7 @@
                             <!-- /input-group -->
                         </li> --}}
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href={{ route('adminDashboard') }}><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Institutions<span class="fa arrow"></span></a>
@@ -58,6 +58,11 @@
                                     <a href={{ route('backendInstitution', ['typeId' => 2]) }}>Non-Academic</a>
                                 </li>
                             </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+
+                        <li>
+                            <a href={{ route('backendInstitutionListStudentBranch') }}><i class="fa fa-sitemap fa-fw"></i> Student Branch Requests<span class="fa arrow"></span></a>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>

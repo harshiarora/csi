@@ -17,7 +17,7 @@ class CreateAcademicMembersTable extends Migration
 
             $table->bigInteger('id')->unsigned()->index();
             $table->integer('institution_type_id')->unsigned()->index();
-            $table->tinyInteger('is_student_branch')->default(0);
+            $table->tinyInteger('is_student_branch')->default(-1);
             $table->timestamps();
 
             $table->primary('id');

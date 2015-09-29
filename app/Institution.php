@@ -40,4 +40,8 @@ class Institution extends Model
         return $this->hasOne('App\Salutation', 'id', 'salutation_id');
     }
 
+    public function InstitutionType() {
+        return $this->hasOne('App\InstitutionType', 'id', 'institution_type');
+    }
+
 }

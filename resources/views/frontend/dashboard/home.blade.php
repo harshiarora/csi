@@ -12,7 +12,21 @@
 
    {{-- start --}}
 
+
 <div class="container-fluid">
+
+<div class="row">
+   <div class="col-md-offset-2 col-md-10">
+       @if (Session::has('flash_notification.message'))
+         <div class="alert alert-{{ Session::get('flash_notification.level') }}">
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+             {{ Session::get('flash_notification.message') }}
+         </div>
+      @endif
+   </div>
+</div>
+
    <div class="row affix-row">
       <div class="col-sm-3 col-md-2 affix-sidebar">
          @if ($verified==1)

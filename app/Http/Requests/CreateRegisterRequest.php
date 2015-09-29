@@ -21,7 +21,7 @@ class CreateRegisterRequest extends Request
         'membership-period' => 'required',
         'salutation' => 'required',
         'fname' => 'required|string',
-        'mname' => 'required|string',
+        'mname' => 'string',
         'lname' => 'required|string',
         'card_name' => 'required|string',
         'dob' => 'required|date',
@@ -47,8 +47,8 @@ class CreateRegisterRequest extends Request
     ];
 
     private $individual_contact = [
-        'email1' => 'required|email',
-        'email2' => 'email',
+        'email1' => 'required|email|unique:members,email',
+        'email2' => 'email|unique:members,email_extra',
         'std' => 'required|numeric',
         'phone' => 'required|numeric',
         'country-code' => 'required|numeric',
@@ -56,8 +56,8 @@ class CreateRegisterRequest extends Request
     ];
 
     private $contact = [
-        'email1' => 'required|email',
-        'email2' => 'email',
+        'email1' => 'required|email|unique:members,email',
+        'email2' => 'email|unique:members,email_extra',
         'std' => 'required|numeric',
         'phone' => 'required|numeric'
     ];
@@ -141,4 +141,13 @@ class CreateRegisterRequest extends Request
         return $validation;
     }
 
+
+    public function messages() {
+        return [
+            'email1.required' => 'The primary email is required',
+            'email2.required' => 'The secondary email is required',
+            'email1.unique' => 'The primary email given already exists, please try with a different one',
+            'email2.unique' => 'The secondary email given already exists, please try with a different one'
+        ];
+    }
 }

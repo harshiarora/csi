@@ -40,7 +40,7 @@
 							    		
 					    		</div>
 					    		<div class="col-md-6" id="errorMobile">
-					    			<span id="helpBlock" class="help-block ">Landline number</span>
+					    			<span id="helpBlock" class="help-block ">Mobile number</span>
 						    				
 					    		</div>
 					    	</div>

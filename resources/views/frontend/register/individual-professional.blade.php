@@ -92,13 +92,14 @@
 						<div class="form-group">
 					    <label class="control-label">Gender</label>
 	      				  <div class="radio">
-						    <label class="radio-inline">
-							  <input type="radio" name="gender" id="gender" value="m"> Male
-							</label>
-							<label class="radio-inline">
-							  <input type="radio" name="gender" id="gender" value="f"> Female
-							</label>
-						  	
+	      				  		<label class="radio-inline">
+									{!! Form::radio('gender', 'm') !!}
+									Male
+								</label>
+								<label class="radio-inline">
+									{!! Form::radio('gender', 'f') !!}
+									Female 
+								</label>
 						  </div>
 					  </div>
 

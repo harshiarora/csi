@@ -52,7 +52,7 @@
             <div class="row" style="margin: 5px 0px;">
                 <div class="col-md-12" style="padding: 0px">
                     <nav class="navbar navbar-default">
-                        <div class="container-fluid">
+                        <div class="container"> {{-- -fluid --}}
                             <div class="navbar-header">
                                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                                     <span class="sr-only">Toggle navigation</span>
@@ -60,12 +60,12 @@
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
                                 </button>
-                                <a class="navbar-brand only-side-padding" id="brand_logo" href="#">
+                                {{-- <a class="navbar-brand only-side-padding" id="brand_logo" href="#">
                                     <img src={{ asset('img/brand-logo-white.png') }} class="pull-left brand_img">
                                     <!-- <p class="pull-left brand_text">CSI</p> -->
-                                </a>
+                                </a> --}}
                             </div>
-                            <div id="navbar" class="navbar-collapse collapse navbar-right">
+                            <div id="navbar" class="navbar-collapse collapse "> {{-- navbar-right --}}
                                 <ul class="nav navbar-nav">
                                     <li class="active">
                                         <a href="home"><span class="glyphicon glyphicon-home">&nbsp;</span>Home</a>

@@ -46,11 +46,20 @@
              </li> --}}
          @if (Auth::user()->user()->membership->type == 'individual')
 
-         @else
+         @endif
+
+         @if (Auth::user()->user()->membership->type == 'institutional')
+
+           @if(Auth::user()->user()->subType->membershipType->type == 'academic')
+              @if(Auth::user()->user()->subType->subType->is_student_branch != 1)
+                <li><a href={{ route('confirmStudentBranch') }}><span class="glyphicon glyphicon-certificate"></span> Request for Student branch</a></li>
+              @endif
+           @endif
            <li><a href="#"><span class="glyphicon glyphicon-plus"></span> Add Nominee</a></li>
            {{-- <li><a href="#"><span class="glyphicon glyphicon-calendar"></span> WithBadges <span class="badge pull-right">42</span></a></li> --}}
            <li><a href=""><span class="glyphicon glyphicon-duplicate"></span> Bulk Payments</a></li>
          @endif 
+
        </ul>
     </div><!--/.nav-collapse -->
  </div>

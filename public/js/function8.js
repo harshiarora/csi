@@ -1,5 +1,5 @@
 var mp;
-var url = 'http://localhost:8000/';
+var url = 'http://localhost/';
 var formElements = [
 	//first object of form elements to be checked for 1st next button click
 	{
@@ -176,6 +176,7 @@ $(document).ready(function() {
   	debug: false
   });
 });
+/*
 $(document).ready(function(){
 	
 	var originalPadding = $('body').css('padding-top');
@@ -238,7 +239,7 @@ $(document).ready(function(){
 			mainBarScrollHandler(this);
 	  });
 });
-
+*/
 // handle scroll event styles for main bar
 function mainBarScrollHandler(element){
 
