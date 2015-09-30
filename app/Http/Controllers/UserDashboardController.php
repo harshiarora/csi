@@ -17,8 +17,7 @@ class UserDashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {   
+    public function index(Request $request) {   
         $verified = Auth::user()->user()->is_verified;
         return view('frontend.dashboard.home', compact('verified') );
     }

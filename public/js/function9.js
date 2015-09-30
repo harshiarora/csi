@@ -22,13 +22,11 @@ var formElements = [
 		},
 		"mname": {
 			rule: [
-				'required',
 				'alphaNumeric'
 			]	
 		},
 		"lname": {
 			rule: [
-				'required',
 				'alphaNumeric'
 			]	
 		},

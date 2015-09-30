@@ -50,8 +50,7 @@ class RegisterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($entity)
-    {   
+    public function create($entity) {   
         $name = $entity;
         $membershipPeriods = [];
         $institutionTypes = [];
@@ -195,9 +194,9 @@ class RegisterController extends Controller
                 $country_code = Input::get('code');
                 Log::info('In getResource for states: '.$country_code);
                 // querying with states of india and not regions > states;
-                $states = State::where('country_code', 'like', $country_code)->get(['state_code', 'name'])->toarray();
+                $states = State::where('country_code', 'like', $country_code)->orderBy('name', 'asc')->get(['state_code', 'name'])->toarray();
                 Log::info('In getResource for states: typeof '.gettype($states));
-               
+                
                 $data = $states;
 
             } else if('branches' == $resource){
@@ -217,7 +216,6 @@ class RegisterController extends Controller
                                 }
                             }
                         });
-                        
                     }
                 }
                 foreach ($collection as $member) {
@@ -227,11 +225,11 @@ class RegisterController extends Controller
                     $result->add($arr);
                 }
                 
-                $data = $result->toarray();
+                $data = $result->sortBy('name')->toarray();
             } else if('chapters' == $resource){
                 $state_code = Input::get('code');
                 Log::info('In getResource for chapters: '.$state_code);
-                $chapters = CsiChapter::where('csi_state_code', $state_code)->get(['id', 'name'])->toarray();
+                $chapters = CsiChapter::where('csi_state_code', $state_code)->orderBy('name', 'asc')->get(['id', 'name'])->toarray();
                 Log::info('In getResource for chapters: typeof '.gettype($chapters));
                
                 $data = $chapters;

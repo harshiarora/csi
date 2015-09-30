@@ -10,10 +10,10 @@
    			<div class="row">
    				<div class="col-md-12">
    					<div>
-					  <h1 class="section-header-style">academic institutional membership form</h1>
+					  	<h1 class="section-header-style">academic institutional membership form</h1>
 					</div>
    					<ul id="progressbar">
-						<li class="active">Institution &amp; Account Type Details</li>
+						<li class="active">Institution &amp; Category Details</li>
 						<li>Address Details</li>
 						<li>Contact Details</li>
 						<li>Details of Head of the Institution</li>
@@ -30,12 +30,17 @@
    						</ul>
    					@endif
    					<div class="page-header">
-					  <h1 id="stepText"> <small id="stepSubText"></small></h1>
+					  <div class="col-md-8">
+					  	<h1 id="stepText"> <small id="stepSubText"></small></h1>
+					  </div>
+					  <div class="col-md-4">
+					  	<p class="pull-right" style="    font-size: 14px;    margin: 35px 15px; color: RED;font-weight: bold;letter-spacing: 1px;">field with * are required</p>
+					  </div>
 					</div>
    					{!! Form::open(['url' => ['register', 'entity'=>$entity], 'files' => true]) !!}
 					  <div class="steps">
 						<div class="form-group">
-							<label for="membership-period">Membership period</label>
+							<label for="membership-period" class="req">Membership period*</label>
 							<div class="radio">
 							    @foreach($membershipPeriods as $period)
 								    <label class="radio-inline">
@@ -47,7 +52,7 @@
 						</div>
 						
 						<div class="form-group">
-							<label for="institution_type">Institution Type</label>
+							<label for="institution_type" class="req">Institution Type*</label>
 							<div class="radio">
 							    @foreach($institutionTypes as $type)
 								    <label class="radio-inline">
@@ -60,10 +65,10 @@
 						</div>
 						
 						<div class="form-group">
-							<label for="exampleInputPassword1">Name of the Institution</label>
+							<label for="exampleInputPassword1" class="req">Name of the Institution*</label>
 							{!! Form::text('nameOfInstitution', null, ['class' => 'form-control', 'placeholder' => 'Name of the Institution']) !!}
 						</div>
-						<button class="btn btn-default next">Next</button>
+						<button class="col-md-offset-5 btn btn-default next">Next</button>
 					  </div>
 					  
 					  
@@ -73,7 +78,7 @@
 
 					  <div class="steps">
 					  	<div class="form-group">
-							<label for="exampleInputPassword1">Title of applicant</label>
+							<label for="exampleInputPassword1" class="req">Title of applicant*</label>
 							<div class="radio">
 							    <label class="radio-inline">
 									{!! Form::radio('salutation', 1) !!}
@@ -98,19 +103,19 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="exampleInputPassword1">Name</label>
+							<label for="exampleInputPassword1" class="req">Name*</label>
 							{!! Form::text('headName', null, ['class' => 'form-control', 'placeholder' => 'Name of the Head of the institution']) !!}
 						</div>
 						<div class="form-group">
-							<label for="exampleInputPassword1">Designation</label>
+							<label for="exampleInputPassword1" class="req">Designation*</label>
 							{!! Form::text('headDesignation', null, ['class' => 'form-control', 'placeholder' => 'Designation of the Head of the institution']) !!}
 						</div>
 						<div class="form-group">
-							<label for="exampleInputPassword1">Email-ID</label>
+							<label for="exampleInputPassword1" class="req">Email-ID*</label>
 							{!! Form::text('headEmail', null, ['class' => 'form-control', 'placeholder' => 'Email ID of the Head of the institution']) !!}
 						</div>
 						<div class="form-group">
-							<label for="exampleInputPassword1">Mobile</label>
+							<label for="exampleInputPassword1" class="req">Mobile*</label>
 							<div class="input-group">
 						    	<span class="input-group-addon">+</span>
 		      				 	{!! Form::text('country-code', null, ['class' => 'form-control', 'placeholder' => 'Country Code', 'id'=>'country-code', 'style'=> 'width: 30%; float:left']) !!}
@@ -127,7 +132,7 @@
 					    		</div>
 					    	</div>
 						</div>
-						<button class="btn btn-default previous">Previous</button>
+						<button class="col-md-offset-4 btn btn-default previous">Previous</button>
 						<button class="btn btn-default next">Next</button>
 					  </div>
 

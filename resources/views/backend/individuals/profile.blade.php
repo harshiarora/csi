@@ -323,13 +323,13 @@
                                     </div>
                                     <div class="panel-footer">
                                         <div class="row">
-                                            <div class="col-md-4">
+                                            <div class="col-md-offset-4 col-md-4">
                                                 <a class="btn btn-primary" href={{ route('backendIndividualAcceptById', ['typeId'=>$typeId, 'id' => $id, 'pid' => $n->id]) }}>Accept</a>
                                                 <a class="btn btn-primary" target="_blank" href={{ url('admin/proofs', ['filename'=> $n->proof]) }}>View Payment Proof</a>
 
                                                 <a class="btn btn-primary" href={{ route('backendIndividualRejectById', ['typeId'=>$typeId, 'id' => $id, 'pid' => $n->id]) }}>Reject</a>
                                             </div>
-                                            <div class="col-md-8">
+                                            <div class="col-md-offset-2 col-md-8" style="border-top: 1px solid #ddd;    text-align: center;    margin-top: 20px;">
                                                 @if ( $n->is_rejected == -1 )
                                                     <p>new payment, waiting to be approved/rejected</p>
                                                 @endif

@@ -245,7 +245,7 @@
             @forelse ($user->member->payments as $payment)
                 <div class="row">
                     <div class="col-md-12">
-                        <h3>{{ $payment->service->name }}</h3>
+                        <h3>Paid for: {{ $payment->service->name }}</h3>
                     </div>
                 <?php $counter=1; ?>
                 @forelse ($payment->journals as $journal)   
@@ -289,12 +289,12 @@
                                     </div>
                                     <div class="panel-footer">
                                         <div class="row">
-                                            <div class="col-md-4">
-                                                <a class="btn btn-primary" href={{ route('backendInstitutionAcceptById', ['typeId'=>$typeId, 'id' => $id, 'pid' => $n->id]) }}>Accept</a>
+                                            <div class="col-md-offset-4 col-md-4">
+                                                <a class="btn btn-primary" href={{ route('backendInstitutionAcceptById', ['typeId'=>$typeId, 'id' => $id, 'pid' => $n->id]) }}>Approved</a>
                                                 <a class="btn btn-primary" target="_blank" href={{ url('admin/proofs', ['filename'=> $n->proof]) }}>View Payment Proof</a>
                                                 <a class="btn btn-primary" href={{ route('backendInstitutionRejectById', ['typeId'=>$typeId, 'id' => $id, 'pid' => $n->id]) }}>Reject</a>
                                             </div>
-                                            <div class="col-md-8">
+                                            <div class="col-md-offset-2 col-md-8" style="border-top: 1px solid #ddd;    text-align: center;    margin-top: 20px;">
                                                 @if ( $n->rejection )
                                                     <p>Reason: {{ $n->rejection->reason }}</p>
                                                 @endif

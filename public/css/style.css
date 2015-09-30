@@ -488,6 +488,14 @@ body{
     border-left: 2px solid #7EE2AB;
 }
 
+.req {
+	color: #E62C2C;
+}
+
+.btn-default {
+	background-color: #D4D4D4;
+}
+
 /**
  * footer 
  */

@@ -27,7 +27,6 @@ var formElements = [
 		},
 		"lname": {
 			rule: [
-				'required',
 				'alphaDash'
 			]	
 		},

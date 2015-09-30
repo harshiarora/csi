@@ -6,7 +6,7 @@
    			<div class="row">
    				<div class="col-md-12">
    					<div>
-					  <h1 class="section-header-style">professional membership form</h1>
+					  	<h1 class="section-header-style">academic institutional membership form</h1>
 					</div>
    					<ul id="progressbar">
 						<li class="active">General Details</li>
@@ -26,12 +26,17 @@
    						</ul>
    					@endif
    					<div class="page-header">
-					  <h1 id="stepText"> <small id="stepSubText"></small></h1>
+					  <div class="col-md-8">
+					  	<h1 id="stepText"> <small id="stepSubText"></small></h1>
+					  </div>
+					  <div class="col-md-4">
+					  	<p class="pull-right" style="    font-size: 14px;    margin: 35px 15px; color: RED;font-weight: bold;letter-spacing: 1px;">field with * are required</p>
+					  </div>
 					</div>
    					{!! Form::open(['url' => ['register', 'entity'=>$entity], 'files' => true]) !!}
 					  <div class="steps">
 						<div class="form-group">
-							<label for="membership-period">Membership period</label>
+							<label for="membership-period" class="req">Membership period*</label>
 							<div class="radio">
 							    @foreach($membershipPeriods as $period)
 								    <label class="radio-inline">
@@ -42,7 +47,7 @@
 						 	</div>
 						</div>
 						<div class="form-group">
-							<label for="exampleInputPassword1">Title of applicant</label>
+							<label for="exampleInputPassword1" class="req">Title of applicant*</label>
 							<div class="radio">
 							    <label class="radio-inline">
 									{!! Form::radio('salutation', 1) !!}
@@ -67,7 +72,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="exampleInputPassword1">First Name</label>
+							<label for="exampleInputPassword1 req">First Name*</label>
 							{!! Form::text('fname', null, ['class' => 'form-control', 'placeholder' => 'First Name ']) !!}
 						</div>						
 						<div class="form-group">
@@ -75,22 +80,22 @@
 							{!! Form::text('mname', null, ['class' => 'form-control', 'placeholder' => 'Middle Name ']) !!}
 						</div>
 						<div class="form-group">
-							<label for="exampleInputPassword1">Last Name</label>
+							<label for="exampleInputPassword1" class="req">Last Name*</label>
 							{!! Form::text('lname', null, ['class' => 'form-control', 'placeholder' => 'Last Name ']) !!}
 						</div>
 						<div class="form-group">
-							<label for="exampleInputPassword1">Name on CSI Card</label>
+							<label for="exampleInputPassword1" class="req">Name on CSI Card*</label>
 							{!! Form::text('card_name', null, ['class' => 'form-control', 'placeholder' => 'Name on CSI Card ']) !!}
 						</div>
 
 						<div class="form-group">
-							<label for="exampleInputPassword1">Date of Birth</label>
+							<label for="exampleInputPassword1" class="req">Date of Birth*</label>
 							{!! Form::text('dob', null, ['class'=>'form-control', 'id'=>'dob_student'])!!}
 							<span class="help-text"></span>
 						</div>
 
 						<div class="form-group">
-					    <label class="control-label">Gender</label>
+					    <label class="req">Gender*</label>
 	      				  <div class="radio">
 	      				  		<label class="radio-inline">
 									{!! Form::radio('gender', 'm') !!}
@@ -103,7 +108,7 @@
 						  </div>
 					  </div>
 
-						<button class="btn btn-default next">Next</button>
+						<button class="col-md-offset-5 btn btn-default next">Next</button>
 					  </div>
 					  
 					  
@@ -114,19 +119,19 @@
 					  <div class="steps">
 					  	
 						<div class="form-group">
-						    <label class="control-label">Organisation Name</label>
+						    <label class="control-label" class="req">Organisation Name*</label>
 						    {!! Form::text('organisation', null, ['class' => 'form-control', 'placeholder' => 'Enter your organisation name']) !!}
 						</div>
 					
 					<div class="form-group
 										">
-					    <label class="control-label">designation
+					    <label class="control-label" class="req">designation*
 					    	<span id="helpBlock" class="text-danger">*</span>
 					    	</label>
 					    {!! Form::text('designation', null, ['class' => 'form-control', 'placeholder' => 'Enter your designation']) !!}
 					 </div>
 
-						<button class="btn btn-default previous">Previous</button>
+						<button class="col-md-offset-4 btn btn-default previous">Previous</button>
 						<button class="btn btn-default next">Next</button>
 					  </div>
 

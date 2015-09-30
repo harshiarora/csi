@@ -90,7 +90,7 @@ class CreateRegisterRequest extends Request
         'drawn' => 'required|date',
         'bank' => 'required|string',
         'branch' => 'required|string',
-        'paymentReciept' => 'mimes:jpeg,bmp,png',
+        'paymentReciept' => 'mimes:jpeg,bmp,png,pdf',
         'amountPaid' => 'required|numeric'
     ];
 
