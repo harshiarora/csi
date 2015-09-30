@@ -105,10 +105,14 @@ class RegisterController extends Controller
             $name = $user->subType->getName();
             $aid = $user->subType->membershipType->prefix."-".$user->id;
             $email = $user->email;
-
-            $this->dispatch(new SendRegisterSms($aid, $email, $user->subType->mobile));
-
+            
+            if ( ( $entity == 'institution-academic') ) {
+                $this->dispatch(new SendRegisterSms($aid, $email, $user->phones->get(0)->mobile));
+            } else {
+                $this->dispatch(new SendRegisterSms($aid, $email, $user->phones->get(0)->mobile));
+            }
             if ( ( $entity == 'institution-academic') || ( $entity == 'institution-non-academic')) {
+                
                 Mail::queue('frontend.emails.institution_register', ['name' => $name, 'email' => $email, 'aid' => $aid], function($message) use($user){
                     $message->to($user->email)->subject('CSI-Membership'); 
                 });
