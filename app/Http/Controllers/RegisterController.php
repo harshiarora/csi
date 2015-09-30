@@ -652,7 +652,7 @@ class RegisterController extends Controller
             $paymentReciept = Input::file('paymentReciept');
             $amountPaid = Input::get('amountPaid');
 
-            $student_branch = AcademicMember::Where('student_branch_id', $stud_branch)->first();
+            $student_branch = AcademicMember::Where('is_student_branch', $stud_branch)->first();
             $chapter = $student_branch->institution->member->csi_chapter_id;
 
             $member = new Member;
