@@ -10,7 +10,7 @@
    			<div class="row">
    				<div class="col-md-12">
    					<div>
-					  	<h1 class="section-header-style">academic institutional membership form</h1>
+					  	<h3 class="section-header-style">academic institutional membership form</h3>
 					</div>
    					<ul id="progressbar">
 						<li class="active">Institution &amp; Category Details</li>
@@ -31,14 +31,14 @@
    					@endif
    					<div class="page-header">
 					  <div class="col-md-8">
-					  	<h1 id="stepText"> <small id="stepSubText"></small></h1>
+					  	<h3 id="stepText"> <small id="stepSubText"></small></h3>
 					  </div>
 					  <div class="col-md-4">
 					  	<p class="pull-right" style="    font-size: 14px;    margin: 35px 15px; color: RED;font-weight: bold;letter-spacing: 1px;">field with * are required</p>
 					  </div>
 					</div>
    					{!! Form::open(['url' => ['register', 'entity'=>$entity], 'files' => true]) !!}
-					  <div class="steps">
+					  <div class="steps" data-stp=1>
 						<div class="form-group">
 							<label for="membership-period" class="req">Membership period*</label>
 							<div class="radio">
@@ -68,7 +68,9 @@
 							<label for="exampleInputPassword1" class="req">Name of the Institution*</label>
 							{!! Form::text('nameOfInstitution', null, ['class' => 'form-control', 'placeholder' => 'Name of the Institution']) !!}
 						</div>
-						<button class="col-md-offset-5 btn btn-default next">Next</button>
+						<div class="btn-group btn-group-justified">
+							<a class="btn btn-default next">Next</a>
+						</div>
 					  </div>
 					  
 					  
@@ -132,23 +134,19 @@
 					    		</div>
 					    	</div>
 						</div>
-						<button class="col-md-offset-4 btn btn-default previous">Previous</button>
-						<button class="btn btn-default next">Next</button>
+						<div class="btn-group btn-group-justified">
+							<a class="col-md-offset-4 btn btn-default previous">Previous</a>
+							<a class="btn btn-default next">Next</a>
+						</div>
 					  </div>
 
 
 					  @include('frontend.partials._partPayment')
 
-					  <br/>
-					  <br/>
-					  <br/>
-					  <br/>
 					{!! Form::Close() !!}
    				</div>
    			</div>
    		</div>
-   		<br/>
-   		<br/>
    	</section>
 @endsection
 

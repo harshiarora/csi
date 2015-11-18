@@ -1,19 +1,21 @@
 @extends('backend.master')
 
+@section('page-header')
+    <div class="col-md-5">
+        <h4>{{$typeName}} Institutions</h4>
+    </div>
+    <div class="col-md-5">
+        
+    </div>
+@endsection
+
 @section('main')
-	    <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">{{$typeName}} Institutions</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
             <!-- /.row -->
             <div class="row">
                 <div class="col-md-12">
 			        
 
-                    <h3 class="page-header">Listing All {{$typeName}}</h3>
+                    <h3>Listing All {{$typeName}}</h3>
                     @if (Session::has('flash_notification.message'))
 			            <div class="alert alert-{{ Session::get('flash_notification.level') }}">
 			                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -36,6 +38,7 @@
 				                                        <tr>
 				                                            <th>#</th>
 				                                            <th>Name of institution</th>
+				                                            <th>verified</th>
 				                                            <th>account status</th>
 				                                        </tr>
 				                                    </thead>
@@ -56,6 +59,8 @@
 <a class="btn btn-success" href={{ route('backendInstitutionVerifyById', ['typeId' => $typeId, 'id' => $inst->id]) }}>Verify</a>
 					                                            	
 					                                            @endif
+					                                           	</td>
+					                                           	<td>
 					                                            	<a class="btn btn-primary" href={{ route('backendInstitutionById', ['typeId' => $typeId, 'id' => $inst->id]) }}>View Profile</a>
 					                                            </td>
 					                                        </tr>
@@ -80,6 +85,5 @@
                 </div>
             <!-- /.row -->
             </div>
-        </div>
         <!-- /#page-wrapper -->
 @endsection

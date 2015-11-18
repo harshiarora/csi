@@ -64,8 +64,8 @@ class DatabaseSeeder extends Seeder
         $this->call('PaymentHeadSeeder');
         $this->command->info('PaymentHead table seeded!');
 
-        $this->call('RequestTypeSeeder');
-        $this->command->info('RequestType table seeded!');
+        $this->call('NotificationTypeSeeder');
+        $this->command->info('NotificationType table seeded!');
 
         
         Model::reguard();

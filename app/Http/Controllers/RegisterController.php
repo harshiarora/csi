@@ -21,7 +21,9 @@ use App\PaymentHead;
 use App\PaymentMode;
 use App\Phone;
 use App\ProfessionalMember;
+use App\RequestService;
 use App\Salutation;
+use App\Service;
 use App\ServiceTaxClass;
 use App\State;
 use App\StudentMember;
@@ -108,10 +110,10 @@ class RegisterController extends Controller
             
             if ( ( $entity == 'institution-academic') || ( $entity == 'institution-non-academic')) {
                 
-                $this->dispatch(new SendRegisterSms($aid, $email, $user->subType->mobile));
-                Mail::queue('frontend.emails.institution_register', ['name' => $name, 'email' => $email, 'aid' => $aid], function($message) use($user){
-                    $message->to($user->email)->subject('CSI-Membership'); 
-                });
+                // $this->dispatch(new SendRegisterSms($aid, $email, $user->subType->mobile));
+                // Mail::queue('frontend.emails.institution_register', ['name' => $name, 'email' => $email, 'aid' => $aid], function($message) use($user){
+                //     $message->to($user->email)->subject('CSI-Membership'); 
+                // });
                 return View('frontend.register.register_success_institution', compact('name', 'email', 'aid'));
             } else if ( ( $entity == 'individual-student') || ( $entity == 'individual-professional')) {
                 $this->dispatch(new SendRegisterSms($aid, $email, $user->phones->get(0)->mobile));
@@ -250,41 +252,40 @@ class RegisterController extends Controller
 
         $var = DB::transaction(function($connection) {
                
-            $membership_period = Input::get('membership-period');
-            $institution_type = Input::get('institution_type');
-            $nameOfInstitution = Input::get('nameOfInstitution');
-            
-            $country = Input::get('country');
-            $state = Input::get('state');
-            $chapter = Input::get('chapter');
-            $address = Input::get('address');
-            $city = Input::get('city');
-            $pincode = Input::get('pincode');
-            $email1 = Input::get('email1');
-            $email2 = Input::get('email2');
-            $std = Input::get('std');
-            $phone = Input::get('phone');
-            
-            $salutation = Input::get('salutation');
-            $headName = Input::get('headName');
-            $headDesignation = Input::get('headDesignation');
-            $headEmail = Input::get('headEmail');
-            $country_code = Input::get('country-code');
-            $mobile = Input::get('mobile');
-            
-            $paymentMode = Input::get('paymentMode');
-            $tno = Input::get('tno');
-            $drawn = Input::get('drawn');
-            $bank = Input::get('bank');
-            $branch = Input::get('branch');
-            $paymentReciept = Input::file('paymentReciept');
-            $amountPaid = Input::get('amountPaid');
-
-            $member = new Member;
-
-            $num = $country_code.'-'.$mobile;
-
+                $membership_period      = Input::get('membership-period');
+                $institution_type       = Input::get('institution_type');
+                $nameOfInstitution      = Input::get('nameOfInstitution');
                 
+                $country                = Input::get('country');
+                $state                  = Input::get('state');
+                $chapter                = Input::get('chapter');
+                $address                = Input::get('address');
+                $city                   = Input::get('city');
+                $pincode                = Input::get('pincode');
+                $email1                 = Input::get('email1');
+                $email2                 = Input::get('email2');
+                $std                    = Input::get('std');
+                $phone                  = Input::get('phone');
+                
+                $salutation             = Input::get('salutation');
+                $headName               = Input::get('headName');
+                $headDesignation        = Input::get('headDesignation');
+                $headEmail              = Input::get('headEmail');
+                $country_code           = Input::get('country-code');
+                $mobile                 = Input::get('mobile');
+                
+                $paymentMode            = Input::get('paymentMode');
+                $tno                    = Input::get('tno');
+                $drawn                  = Input::get('drawn');
+                $bank                   = Input::get('bank');
+                $branch                 = Input::get('branch');
+                $paymentReciept         = Input::file('paymentReciept');
+                $amountPaid             = Input::get('amountPaid');
+
+                $member = new Member; 
+
+                $num = $country_code.'-'.$mobile;
+
                 $member->membership_id = 1;
                 $membership_type = 1;
                 $member->csi_chapter_id = $chapter;
@@ -296,7 +297,7 @@ class RegisterController extends Controller
                 $member->id;
                 $filename = $member->id.'.';
                 $filename.=$paymentReciept->getClientOriginalExtension();
-                
+            
                 Address::create([
                     'type_id' => 1,
                     'member_id' => $member->id,
@@ -310,58 +311,64 @@ class RegisterController extends Controller
                 Phone::create([
                     'member_id' => $member->id,
                     'std_code' => $std,
-                    'landline' => $phone,
+                    'landline' => $phone
                 ]);
 
                 $paymentReciept->move(storage_path('uploads/payment_proofs'), $filename);
                 
 
-                    $institution = Institution::create([
-                        'member_id' => $member->id, 
-                        'membership_type_id' => $membership_type, 
-                        'salutation_id' => $salutation, 
-                        'name' => $nameOfInstitution, 
-                        'head_name' => $headName, 
-                        'head_designation' => $headDesignation, 
-                        'email' => $headEmail, 
-                        'country_code' => $country_code,
-                        'mobile' => $mobile,
-                    ]);
+                $institution = Institution::create([
+                    'member_id' => $member->id, 
+                    'membership_type_id' => $membership_type, 
+                    'salutation_id' => $salutation, 
+                    'name' => $nameOfInstitution, 
+                    'head_name' => $headName, 
+                    'head_designation' => $headDesignation, 
+                    'email' => $headEmail, 
+                    'country_code' => $country_code,
+                    'mobile' => $mobile,
+                ]);
 
 
-                        $academic_member = AcademicMember::create([
-                            'id' => $institution->id,
-                            'institution_type_id' => $institution_type
-                        ]);
+                $academic_member = AcademicMember::create([
+                    'id' => $institution->id,
+                    'institution_type_id' => $institution_type
+                ]);
 
 
-                    // 2nd arg is currency.. needs to be queried to put here
-                    $head = PaymentHead::getHead($membership_period, 1)->first();
+                // 2nd arg is currency.. needs to be queried to put here
+                $head = PaymentHead::getHead($membership_period, 1)->first();
 
-                    $payment = Payment::create([
-                        'paid_for' => $member->id, 
-                        'payment_head_id' => $head->id, 
-                        'service_id' => 1
-                    ]);
+                $payment = Payment::create([
+                    'paid_for' => $member->id, 
+                    'payment_head_id' => $head->id, 
+                    'service_id' => 1
+                ]);
 
-                    $narration = Narration::create([ 
-                        'payer_id' => $member->id, 
-                        'mode' => $paymentMode, 
-                        'transaction_number' => $tno, 
-                        'bank' => $bank, 
-                        'branch' => $branch, 
-                        'date_of_payment' => $drawn, 
-                        'drafted_amount' => $head->amount, 
-                        'paid_amount' => $amountPaid, 
-                        'proof' => $filename
-                    ]);
+                $narration = Narration::create([ 
+                    'payer_id' => $member->id, 
+                    'mode' => $paymentMode, 
+                    'transaction_number' => $tno, 
+                    'bank' => $bank, 
+                    'branch' => $branch, 
+                    'date_of_payment' => $drawn, 
+                    'drafted_amount' => $head->amount, 
+                    'paid_amount' => $amountPaid, 
+                    'proof' => $filename
+                ]);
 
-                    $journal = Journal::create([
-                        'payment_id' => $payment->id,
-                        'narration_id' => $narration->id
-                    ]);
-                    
-                   return $member;
+                $journal = Journal::create([
+                    'payment_id' => $payment->id,
+                    'narration_id' => $narration->id
+                ]);
+                
+                $request = RequestService::create([
+                    'service_id' => Service::getServiceIDByType('membership'), 
+                    'member_id'  => $member->id
+                ]);
+
+
+                return $member;
             });
 
         return $var;

@@ -47,6 +47,8 @@
 			</div>
 		@endif
 
-	<button class="col-md-offset-4 btn btn-default previous">Previous</button>
-	<button class="btn btn-default next">Next</button>
+	<div class="btn-group btn-group-justified">
+		<a class="col-md-offset-4 btn btn-default previous">Previous</a>
+		<a class="btn btn-default next">Next</a>
+	</div>
 </div>

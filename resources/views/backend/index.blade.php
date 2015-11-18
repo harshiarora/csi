@@ -1,28 +1,21 @@
 @extends('backend.master')
 
-@section('custom-styles')
-    <!-- Timeline CSS -->
-    <link href="../dist/css/timeline.css" rel="stylesheet">
-    <!-- Morris Charts CSS -->
-    <link href="../bower_components/morrisjs/morris.css" rel="stylesheet">
+@section('page-header')
+    <div class="col-md-2">
+        <h4>Dashboard</h4>
+    </div>
+    <div class="col-md-10">
+        
+    </div>
 @endsection
 
 @section('main')
-	    <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Dashboard</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
             
-            <!-- /.row -->
-            <div class="row">
-               
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
+    <!-- /.row -->
+    <div class="row">
+       
+    </div>
+    <!-- /.row -->
 @endsection
 
 

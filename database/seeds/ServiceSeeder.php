@@ -14,7 +14,11 @@ class ServiceSeeder extends Seeder
     {
         DB::table('services')->delete();
 
-
-        Service::create(['name'=>'membership']);
+        Service::create([
+            'name' => 'membership'
+        ]);
+        Service::create([
+            'name' => 'student branch'
+        ]);
     }
 }

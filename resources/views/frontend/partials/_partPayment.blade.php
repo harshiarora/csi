@@ -44,6 +44,8 @@
 		{!! Form::text('amountPaid', null, ['class'=>'form-control', 'id'=>'amount_paid'])!!}
 		<span class="help-text"></span>
 	</div>
-	<button class="col-md-offset-4 btn btn-default previous">Previous</button>
-	<button class="btn btn-default" name="submit" id="submit">Submit</button>
+	<div class="btn-group btn-group-justified">
+		<a class="col-md-offset-4 btn btn-default previous">Previous</a>
+		<a class="btn btn-default" name="submit" id="submit">Submit</a>
+	</div>
 </div>

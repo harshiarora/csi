@@ -10,11 +10,12 @@
     <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'> <!--fixed nav font-->
     <link href='https://fonts.googleapis.com/css?family=Lato:400,900,700' rel='stylesheet' type='text/css'> <!-- logo font-->
     <link href='https://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
-    
+    <link href='https://fonts.googleapis.com/css?family=Pathway+Gothic+One' rel='stylesheet' type='text/css'>
     <!-- Bootstrap -->
     <link href={{ asset("css/bootstrap.min.css") }} rel="stylesheet">
     <link href={{ asset("css/jquery-ui.css") }} rel="stylesheet">
-    <link href={{ asset("css/style.css") }} rel="stylesheet">
+    {{-- <link href={{ asset("css/style.css") }} rel="stylesheet"> --}}
+    <link href={{ asset("css/style.materialize.css") }} rel="stylesheet">
     @yield('custom-styles')
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,11 +29,6 @@
     
     @section('main')
     @show
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>

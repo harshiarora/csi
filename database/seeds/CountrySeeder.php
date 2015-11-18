@@ -14,18 +14,10 @@ class CountrySeeder extends Seeder
     {
         DB::table('countries')->delete();
 
-		$json = File::get(storage_path().'/json/countries.json');
+		$json = File::get(storage_path().'/json/country_with_dialCodes.json');
 		$data = json_decode($json);
-		foreach($data as $k => $v){
-			if($k == 'RestResponse'){
-				foreach($v as $key => $value){
-					if($key == 'result'){
-						foreach($value as $object){
-							Country::create(['alpha2_code' => $object->alpha2_code, 'alpha3_code' => $object->alpha3_code, 'name' => $object->name]);
-						}
-					}
-				}
-			}
+		foreach($data as $object){
+			Country::create(['alpha2_code' => $object->alpha2_code, 'alpha3_code' => $object->alpha3_code, 'name' => $object->name, 'dial_code' => $object->dial_code]);
 		}
     }
 }

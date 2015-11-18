@@ -1,4 +1,4 @@
-<div class="steps">
+<div class="steps" data-stp=2>
 	<div class="form-group">
 		<label for="exampleInputEmail1" class="req">Country*</label>
 		<select class="form-control" id="country" data-form="0" name="country">
@@ -39,6 +39,9 @@
 		<label for="exampleInputPassword1" class="req">Pincode*</label>
 		{!! Form::text('pincode', null, ['class' => 'form-control', 'placeholder' => 'Pincode']) !!}
 	</div>
-	<button class="col-md-offset-4 btn btn-default previous">Previous</button>
-	<button class="btn btn-default next">Next</button>
+	<div class="btn-group btn-group-justified">
+		<a class="col-md-offset-4 btn btn-default previous">Previous</a>
+		<a class="btn btn-default next">Next</a>
+	</div>
+
 </div>

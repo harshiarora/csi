@@ -15,12 +15,13 @@
     <link href={{ asset("css/bootstrap.min.css") }}  rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href={{ asset("css/metisMenu.min.css") }}  rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href={{ asset("css/sb-admin-2.css") }}  rel="stylesheet">
+    <link href={{ asset("css/admin.css") }}  rel="stylesheet">
 
     <!-- Custom Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'> <!--fixed nav font-->
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,900,700' rel='stylesheet' type='text/css'> <!-- logo font-->
+    <link href='https://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Pathway+Gothic+One' rel='stylesheet' type='text/css'>
     <link href={{ asset("css/font-awesome.min.css") }}  rel="stylesheet" type="text/css">
 
     @yield('custom-styles')
@@ -36,17 +37,36 @@
 </head>
 
 <body>
-
     <div id="wrapper">
+        <div class="overlay"></div>
+    
+        <!-- Sidebar -->
+         @include('backend.partials.sidebar')
+        <!-- /#sidebar-wrapper -->
 
-        @include('backend.partials.sidebar')
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row" id="page-header">
+                    <div class="col-xs-1 page-collapse-btn">
+                        <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+                            <span class="hamb-top"></span>
+                            <span class="hamb-middle"></span>
+                            <span class="hamb-bottom"></span>
+                        </button>
+                    </div>
+                    <div class="col-xs-11 page-header-menu">
+                        @yield('page-header')
+                    </div>
+                </div>
 
-        @section('main')
-        @show
+                @section('main')
+                @show                         
 
+            </div>
+        </div>
     </div>
-    <!-- /#wrapper -->
-
+    <!-- /#page-content-wrapper -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -56,8 +76,8 @@
     <!-- <script src="js/verify.min.js"></script> -->
     <script src={{ asset("js/jquery-ui.js") }}></script>
     <script src={{ asset("js/bootstrap.min.js") }}></script>
-    <script src={{ asset("js/metisMenu.min.js") }}></script>
-    <script src={{ asset("js/sb-admin-2.js") }}></script>
+    <script src={{ asset("js/admin.js") }}></script>
+
     @yield('footer-scripts')
 
 </body>

@@ -1,5 +1,5 @@
 var mp;
-var url = 'http://localhost/';
+var url = window.location.origin+"/";
 var formElements = [
 	//first object of form elements to be checked for 1st next button click
 	{
@@ -39,7 +39,7 @@ var formElements = [
 		"dob": {
 			rule: [
 				'required',
-				'alphaDash'
+				'dateRange:01/01/1991'
 			]	
 		},
 		"gender": {
@@ -323,7 +323,7 @@ $(document).ready(function(){
 	var professionalLastDate = new Date(today.getFullYear() -18, 1, 1);
 	
 	$("#dob_student").datepicker({
-		dateFormat : 'yy-mm-dd',
+		dateFormat : 'dd/mm/yy',
 		changeMonth: true,
 	    changeYear: true, 
 	    maxDate: new Date(today-100, 1,1),
@@ -331,7 +331,7 @@ $(document).ready(function(){
 	    yearRange:  "-100:+0"
 	}).val();
 	$("#dob_professional").datepicker({
-		dateFormat : 'yy-mm-dd',
+		dateFormat : 'dd/mm/yy',
 		changeMonth: true,
 	    changeYear: true, 
 	    maxDate: professionalLastDate,
@@ -342,7 +342,7 @@ $(document).ready(function(){
 	$("#drawn_on").datepicker({
         changeMonth: true,
         changeYear: true,
-		dateFormat : 'yy-mm-dd'
+		dateFormat : 'dd/mm/yy'
 	}).val();
 	
 });
